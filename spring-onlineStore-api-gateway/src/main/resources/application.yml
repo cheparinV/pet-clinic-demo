@@ -1,0 +1,19 @@
+spring:
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
+    gateway:
+      routes:
+        - id: visits-service
+          uri: lb://visits-service
+          predicates:
+            - Path=/api/visit/**
+          filters:
+            - StripPrefix=2
+        - id: items-service
+          uri: lb://items-service
+          predicates:
+            - Path=/api/inventory/**
+          filters:
+            - StripPrefix=2

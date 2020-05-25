@@ -1,0 +1,25 @@
+<h2>Edit item</h2>
+<form ng-submit="$ctrl.submitItemForm()" style="max-width: 25em;">
+    <div class="form-group">
+        <label>Name</label>
+        <input class="form-control" ng-model="$ctrl.item.name" name="name" required/>
+        <span ng-show="itemForm.name.$error.required" class="help-block">Name is required.</span>
+    </div>
+
+    <div class="form-group">
+        <label>Price</label>
+        <input class="form-control" ng-model="$ctrl.item.price" name="price" required/>
+        <span ng-show="itemForm.price.$error.required" class="help-block">Price is required.</span>
+    </div>
+
+    <div class="form-group">
+        <label>Description</label>
+        <input class="form-control" ng-model="$ctrl.item.description" name="description" required/>
+        <span ng-show="itemForm.description.$error.required" class="help-block">Description is required.</span>
+    </div>
+    
+    <div class="form-group">
+        <button class="btn btn-default" type="submit">Submit</button>
+    </div>
+</form>
+
