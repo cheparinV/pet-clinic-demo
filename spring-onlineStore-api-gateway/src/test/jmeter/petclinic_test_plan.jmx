@@ -391,7 +391,7 @@
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.protocol"></stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">/api/visit/owners/${OWNER_ID}/pets/${PET_ID}/visits</stringProp>
+          <stringProp name="HTTPSampler.path">/api/cart/owners/${OWNER_ID}/pets/${PET_ID}/visits</stringProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -413,7 +413,7 @@
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <RandomController guiclass="RandomControlGui" testclass="RandomController" testname="Add Random second visit" enabled="true">
+        <RandomController guiclass="RandomControlGui" testclass="RandomController" testname="Add Random second cart" enabled="true">
           <intProp name="InterleaveControl.style">1</intProp>
         </RandomController>
         <hashTree>
@@ -435,7 +435,7 @@
             <stringProp name="HTTPSampler.port"></stringProp>
             <stringProp name="HTTPSampler.protocol"></stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">/api/visit/owners/${OWNER_ID}/pets/${PET_ID}/visits</stringProp>
+            <stringProp name="HTTPSampler.path">/api/cart/owners/${OWNER_ID}/pets/${PET_ID}/visits</stringProp>
             <stringProp name="HTTPSampler.method">POST</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>

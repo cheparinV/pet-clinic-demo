@@ -1,0 +1,2 @@
+INSERT INTO cart VALUES (1, 1);
+INSERT INTO cart VALUES (2, 2);

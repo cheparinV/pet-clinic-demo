@@ -17,11 +17,16 @@
 
     <modules>
         <module>spring-onlineStore-admin-server</module>
-        <module>spring-onlineStore-items-service</module>
-        <module>spring-onlineStore-visits-service</module>
         <module>spring-onlineStore-config-server</module>
         <module>spring-onlineStore-discovery-server</module>
         <module>spring-onlineStore-api-gateway</module>
+
+        <!--services-->
+        <module>spring-onlineStore-service-accounts</module>
+        <module>spring-onlineStore-service-carts</module>
+        <module>spring-onlineStore-service-discounts</module>
+        <module>spring-onlineStore-service-inventory</module>
+        <module>spring-onlineStore-service-payments</module>
     </modules>
 
     <properties>
@@ -33,7 +38,7 @@
 
         <maven-surefire-plugin.version>2.22.0</maven-surefire-plugin.version>
 
-        <docker.image.prefix>springcommunity</docker.image.prefix>
+        <docker.image.prefix>onlienstore</docker.image.prefix>
         <docker.image.exposed.port>9090</docker.image.exposed.port>
         <docker.image.dockerfile.dir>${basedir}</docker.image.dockerfile.dir>
         <docker.image.dockerize.version>v0.6.1</docker.image.dockerize.version>
@@ -56,8 +61,8 @@
                 <scope>test</scope>
                 <exclusions>
                     <exclusion>
-                    <groupId>junit</groupId>
-                    <artifactId>junit</artifactId>
+                        <groupId>junit</groupId>
+                        <artifactId>junit</artifactId>
                     </exclusion>
                 </exclusions>
             </dependency>

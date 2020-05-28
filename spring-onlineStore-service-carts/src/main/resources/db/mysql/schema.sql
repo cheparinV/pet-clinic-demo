@@ -1,0 +1,9 @@
+CREATE DATABASE IF NOT EXISTS onlinestore;
+GRANT ALL PRIVILEGES ON onlinestore.* TO os@localhost IDENTIFIED BY 'os';
+
+USE onlinestore;
+
+CREATE TABLE IF NOT EXISTS cart(
+    id      INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_id INT(4) UNSIGNED NOT NULL
+) engine=InnoDB;

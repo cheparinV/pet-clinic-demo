@@ -1,0 +1,6 @@
+DROP TABLE cart IF EXISTS;
+
+CREATE TABLE cart(
+    id      INTEGER IDENTITY PRIMARY KEY,
+    user_id INTEGER NOT NULL
+);

@@ -2,54 +2,87 @@ version: '2'
 
 services:
   config-server:
-    image: springcommunity/spring-petclinic-config-server
+    image: onlienstore/spring-petclinic-config-server
     container_name: config-server
     mem_limit: 512M
     ports:
-     - 8888:8888
+      - 8888:8888
 
   discovery-server:
-    image: springcommunity/spring-petclinic-discovery-server
+    image: onlienstore/spring-petclinic-discovery-server
     container_name: discovery-server
     mem_limit: 512M
     depends_on:
       - config-server
     entrypoint: ["./dockerize","-wait=tcp://config-server:8888","-timeout=60s","--","java", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseCGroupMemoryLimitForHeap", "-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
     ports:
-     - 8761:8761
+      - 8761:8761
 
-  items-service:
-    image: springcommunity/spring-petclinic-customers-service
-    container_name: items-service
+  accounts-service:
+    image: onlienstore/spring-petclinic-service-accounts
+    container_name: accounts-service
     mem_limit: 512M
     depends_on:
-     - config-server
-     - discovery-server
+      - config-server
+      - discovery-server
     entrypoint: ["./dockerize","-wait=tcp://discovery-server:8761","-timeout=60s","--","java", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseCGroupMemoryLimitForHeap", "-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
     ports:
-    - 8081:8081
+      - 8082:8082
 
-  visits-service:
-    image: springcommunity/spring-petclinic-visits-service
-    container_name: visits-service
+  carts-service:
+    image: onlienstore/spring-petclinic-service-carts
+    container_name: carts-service
     mem_limit: 512M
     depends_on:
-     - config-server
-     - discovery-server
+      - config-server
+      - discovery-server
     entrypoint: ["./dockerize","-wait=tcp://discovery-server:8761","-timeout=60s","--","java", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseCGroupMemoryLimitForHeap", "-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
     ports:
-     - 8082:8082
+      - 8083:8083
+
+  discounts-service:
+    image: onlienstore/spring-petclinic-service-discounts
+    container_name: discounts-service
+    mem_limit: 512M
+    depends_on:
+      - config-server
+      - discovery-server
+    entrypoint: ["./dockerize","-wait=tcp://discovery-server:8761","-timeout=60s","--","java", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseCGroupMemoryLimitForHeap", "-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+    ports:
+      - 8084:8084
+
+  inventory-service:
+    image: onlienstore/spring-petclinic-service-inventory
+    container_name: inventory-service
+    mem_limit: 512M
+    depends_on:
+      - config-server
+      - discovery-server
+    entrypoint: ["./dockerize","-wait=tcp://discovery-server:8761","-timeout=60s","--","java", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseCGroupMemoryLimitForHeap", "-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+    ports:
+      - 8081:8081
+
+  payments-service:
+    image: onlienstore/spring-petclinic-service-payments
+    container_name: payments-service
+    mem_limit: 512M
+    depends_on:
+      - config-server
+      - discovery-server
+    entrypoint: ["./dockerize","-wait=tcp://discovery-server:8761","-timeout=60s","--","java", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseCGroupMemoryLimitForHeap", "-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+    ports:
+      - 8085:8085
 
   api-gateway:
-    image: springcommunity/spring-petclinic-api-gateway
+    image: onlienstore/spring-petclinic-api-gateway
     container_name: api-gateway
     mem_limit: 512M
     depends_on:
-     - config-server
-     - discovery-server
+      - config-server
+      - discovery-server
     entrypoint: ["./dockerize","-wait=tcp://discovery-server:8761","-timeout=60s","--","java", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseCGroupMemoryLimitForHeap", "-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
     ports:
-     - 8080:8080
+      - 8080:8080
 
   tracing-server:
     image: openzipkin/zipkin
@@ -61,28 +94,28 @@ services:
      - 9411:9411
 
   admin-server:
-    image: springcommunity/spring-petclinic-admin-server
+    image: onlienstore/spring-petclinic-admin-server
     container_name: admin-server
     mem_limit: 512M
     depends_on:
-     - config-server
-     - discovery-server
+      - config-server
+      - discovery-server
     entrypoint: ["./dockerize","-wait=tcp://discovery-server:8761","-timeout=60s","--","java", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseCGroupMemoryLimitForHeap", "-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
     ports:
-     - 9090:9090
+      - 9090:9090
 
   ## Grafana / Prometheus
 
-  grafana-server:
-    build: ./docker/grafana
-    container_name: grafana-server
-    mem_limit: 256M
-    ports:
-    - 3000:3000
-
-  prometheus-server:
-    build: ./docker/prometheus
-    container_name: prometheus-server
-    mem_limit: 256M
-    ports:
-    - 9091:9090
+#  grafana-server:
+#    build: ./docker/grafana
+#    container_name: grafana-server
+#    mem_limit: 256M
+#    ports:
+#    - 3000:3000
+#
+#  prometheus-server:
+#    build: ./docker/prometheus
+#    container_name: prometheus-server
+#    mem_limit: 256M
+#    ports:
+#    - 9091:9090

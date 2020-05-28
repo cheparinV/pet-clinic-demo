@@ -1,0 +1,28 @@
+CREATE DATABASE IF NOT EXISTS onlinestore;
+GRANT ALL PRIVILEGES ON onlinestore.* TO os@localhost IDENTIFIED BY 'os';
+
+USE onlinestore;
+
+CREATE TABLE IF NOT EXISTS types (
+  id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(80),
+  INDEX(name)
+) engine=InnoDB;
+
+CREATE TABLE IF NOT EXISTS items (
+  id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255),
+  price VARCHAR(255),
+  description VARCHAR(255)
+) engine=InnoDB;
+
+CREATE TABLE IF NOT EXISTS payments (
+  id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(30),
+  some_date DATE,
+  type_id INT(4) UNSIGNED NOT NULL,
+  owner_id INT(4) UNSIGNED NOT NULL,
+  INDEX(name),
+  FOREIGN KEY (owner_id) REFERENCES items(id),
+  FOREIGN KEY (type_id) REFERENCES types(id)
+) engine=InnoDB;
