@@ -26,12 +26,16 @@ spring:
         - id: inventory-service
           uri: lb://inventory-service
           predicates:
-            - Path=/api/items/**
+            - Path=/api/inventory/**
           filters:
             - StripPrefix=2
         - id: payments-service
           uri: lb://payments-service
           predicates:
             - Path=/api/payments/**
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
+>>>>>>> 5f0c30c8281501bfea11876340b5a57604bb4da9
           filters:
             - StripPrefix=2
