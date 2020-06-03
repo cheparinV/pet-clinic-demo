@@ -38,7 +38,44 @@ services:
      - discovery-server
     entrypoint: ["./dockerize","-wait=tcp://discovery-server:8761","-timeout=60s","--","java", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseCGroupMemoryLimitForHeap", "-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
     ports:
+<<<<<<< Updated upstream
      - 8082:8082
+=======
+      - 8083:8083
+
+  discounts-service:
+    image: onlienstore/spring-petclinic-service-discounts
+    container_name: discounts-service
+    mem_limit: 512M
+    depends_on:
+      - config-server
+      - discovery-server
+    entrypoint: ["./dockerize","-wait=tcp://discovery-server:8761","-timeout=60s","--","java", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseCGroupMemoryLimitForHeap", "-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+    ports:
+      - 8084:8084
+
+  inventory-service:
+    image: onlienstore/spring-petclinic-service-inventory-new
+    container_name: inventory-service
+    mem_limit: 512M
+    depends_on:
+      - config-server
+      - discovery-server
+    entrypoint: ["./dockerize","-wait=tcp://discovery-server:8761","-timeout=60s","--","java", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseCGroupMemoryLimitForHeap", "-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+    ports:
+      - 8081:8081
+
+  payments-service:
+    image: onlienstore/spring-petclinic-service-payments
+    container_name: payments-service
+    mem_limit: 512M
+    depends_on:
+      - config-server
+      - discovery-server
+    entrypoint: ["./dockerize","-wait=tcp://discovery-server:8761","-timeout=60s","--","java", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseCGroupMemoryLimitForHeap", "-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+    ports:
+      - 8085:8085
+>>>>>>> Stashed changes
 
   api-gateway:
     image: springcommunity/spring-petclinic-api-gateway

@@ -14,6 +14,28 @@ spring:
         - id: items-service
           uri: lb://items-service
           predicates:
+<<<<<<< Updated upstream
             - Path=/api/inventory/**
+=======
+            - Path=/api/carts/**
+          filters:
+            - StripPrefix=2
+        - id: discounts-service
+          uri: lb://discounts-service
+          predicates:
+            - Path=/api/discounts/**
+          filters:
+            - StripPrefix=2
+        - id: inventory-service
+          uri: lb://inventory-service
+          predicates:
+            - Path=/api/inventory/**
+          filters:
+            - StripPrefix=2
+        - id: payments-service
+          uri: lb://payments-service
+          predicates:
+            - Path=/api/payments/**
+>>>>>>> Stashed changes
           filters:
             - StripPrefix=2
