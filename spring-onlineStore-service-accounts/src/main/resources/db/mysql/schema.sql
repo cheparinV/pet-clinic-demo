@@ -1,0 +1,10 @@
+CREATE DATABASE IF NOT EXISTS onlinestore;
+GRANT ALL PRIVILEGES ON onlinestore.* TO os@localhost IDENTIFIED BY 'os';
+
+USE onlinestore;
+
+CREATE TABLE IF NOT EXISTS account (
+  id INT(4) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(80),
+  INDEX(name)
+) engine=InnoDB;

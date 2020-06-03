@@ -1,0 +1,2 @@
+INSERT IGNORE INTO discount VALUES (1, 1, 5);
+INSERT IGNORE INTO discount VALUES (2, 2, 5);

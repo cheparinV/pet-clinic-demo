@@ -29,7 +29,7 @@ public class InventoryServiceClient {
 
     public Mono<ItemDetails> getItem(final int itemId) {
         return webClientBuilder.build().get()
-            .uri("http://items-service/items/{itemId}", itemId)
+            .uri("http://inventory-service/items/{itemId}", itemId)
             .retrieve()
             .bodyToMono(ItemDetails.class);
     }

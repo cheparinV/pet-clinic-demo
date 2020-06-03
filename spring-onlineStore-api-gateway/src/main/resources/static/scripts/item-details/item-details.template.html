@@ -3,19 +3,19 @@
 <table class="table table-striped">
     <tr>
         <th class="col-sm-3">Name</th>
-        <td><b>{{$ctrl.item.name}}</b></td>
+        <td><b>{{$ctrl.account.name}}</b></td>
     </tr>
     <tr>
         <th>Price</th>
-        <td>{{$ctrl.item.price}}</td>
+        <td>{{$ctrl.account.price}}</td>
     </tr>
     <tr>
         <th>Description</th>
-        <td>{{$ctrl.item.description}}</td>
+        <td>{{$ctrl.account.description}}</td>
     </tr>
     <tr>
         <td>
-            <a class="btn btn-default" ui-sref="itemEdit({itemId: $ctrl.item.id})">Edit Item</a>
+            <a class="btn btn-default" ui-sref="itemEdit({itemId: $ctrl.account.id})">Edit Item</a>
         </td>
     </tr>
 </table>
@@ -23,7 +23,7 @@
 <h2>Payment details</h2>
 
 <table class="table table-striped">
-    <tr ng-repeat="payment in $ctrl.item.payments track by payment.id">
+    <tr ng-repeat="payment in $ctrl.account.payments track by payment.id">
         <td valign="top">
             <dl class="dl-horizontal">
                 <dt>Payment</dt>

@@ -15,13 +15,13 @@
     </tr>
     </thead>
 
-    <tr ng-repeat="item in $ctrl.items | filter:$ctrl.query track by item.id">
+    <tr ng-repeat="account in $ctrl.items | filter:$ctrl.query track by account.id">
         <td>
-            <a ui-sref="itemDetails({ itemId: item.id })">
-                {{item.name}}
+            <a ui-sref="itemDetails({ itemId: account.id })">
+                {{account.name}}
             </a>
         </td>
-        <td>{{item.price}}</td>
-        <td>{{item.description}}</td>
+        <td>{{account.price}}</td>
+        <td>{{account.description}}</td>
     </tr>
 </table>
